@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Catálogo de Disco</title>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no"/>
+
+    <link href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/css/style.css" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="container">
+    <div class="jumbotron">
+        <h1>Catálogo de Discos</h1>
+    </div>
+
+    <div>
+        <a class="btn btn-primary" th:href="@{/categorias/cadastro}">Nova playlist</a>
+    </div>
+    <hr/>
+
+    <div th:if="${categorias != null}">
+        <h4>
+            Categorias
+        </h4>
+
+        <div th:if="${mensagem != null}">
+            <div class="alert alert-info" role="alert">
+                <span th:text="${mensagem}">mensagem</span>
+            </div>
+        </div>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Ação</th>
+            </tr>
+            </thead>
+            <tr th:each="categoria : ${categorias}">
+                <td >
+                    <a th:text="${categoria.nome}" th:href="@{/categorias/{id}/discos/listar(id=${categoria.id})}">nome</a>
+                </td>
+                <td th:text="${categoria.descricao}">descricao</td>
+                <td>
+                    <a class="btn btn-sm btn-info" th:href="@{/categorias/{id}/atualizar(id=${categoria.id})}">Editar</a>
+                    <a class="btn btn-sm btn-danger" th:href="@{/categorias/{id}/remover(id=${categoria.id})}">Excluir</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div th:if="${#lists.isEmpty(categorias)}">
+        <div class="alert alert-info" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign"></span>
+            0 playlists cadastradas!
+        </div>
+    </div>
+    <hr/>
+
+    <a class="btn btn-light" href="/home">Voltar</a>
+    <hr/>
+
+    <footer class="footer">
+        <p>&copy; 2018 DevMedia</p>
+    </footer>
+
+</div>
+</body>
+</html>

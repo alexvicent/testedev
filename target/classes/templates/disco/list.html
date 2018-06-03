@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Catálogo de Música</title>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no"/>
+
+    <link href="/webjars/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/css/style.css" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="container">
+    <div class="jumbotron">
+        <h1>Catálogo de Música</h1>
+    </div>
+
+    <div>
+        <a class="btn btn-primary" th:href="@{/categorias/{categoriaId}/discos/cadastro(categoriaId=${categoriaId})}">
+            Novo Disco</a>
+    </div>
+
+    <hr/>
+    <div th:if="${discos != null}">
+        <h4>
+            Discos
+        </h4>
+
+        <div th:if="${mensagem != null}">
+            <div class="alert alert-info" role="alert">
+                <span th:text="${mensagem == null ? '&nbsp;' : mensagem}">mensagem</span>
+            </div>
+        </div>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Titulo</th>
+                <th>Album</th>
+                <th>Nota</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tr th:each="disco : ${discos}">
+                <td th:text="${disco.titulo}">titulo</td>
+                <td th:text="${disco.album}">album</td>
+                <td th:text="${disco.nota}">nota</td>
+                <td>
+                    <a class="btn btn-sm btn-info" th:href="@{/categorias/{categoriaId}/discos/{discoId}/atualizar(
+                      categoriaId=${categoriaId},discoId=${disco.id})}">Editar</a>
+                    <a class="btn btn-sm btn-danger" th:href="@{/categorias/{categoriaId}/discos/{discoId}/remover(
+                      categoriaId=${categoriaId},discoId=${disco.id})}">Excluir</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div th:if="${#lists.isEmpty(discos)}">
+        <div class="alert alert-info" role="alert">
+            <span class="glyphicon glyphicon-exclamation-sign"></span>
+            Discos cadastradas!
+        </div>
+    </div>
+
+    <hr/>
+    <a class="btn btn-light" th:href="@{/categorias/listar}">Voltar</a>
+
+    <hr/>
+    <footer class="footer">
+        <p>&copy; 2018</p>
+    </footer>
+
+</div>
+</body>
+</html>
