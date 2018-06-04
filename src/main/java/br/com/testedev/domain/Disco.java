@@ -28,7 +28,10 @@ import javax.validation.constraints.Size;
         @Range(min = 0, max = 10)
         @Column(nullable = false)
         private int nota;
-
+/*
+    @Lob
+        private Long capa;
+*/
         @ManyToOne
         @JoinColumn(name = "id_categoria_fk")
         private Categoria categoria;
@@ -64,7 +67,15 @@ import javax.validation.constraints.Size;
     public void setNota(int nota) {
         this.nota = nota;
     }
+/*
+    public Long getCapa() {
+        return capa;
+    }
 
+    public void setCapa(Long capa) {
+        this.capa = capa;
+    }
+*/
     public Categoria getCategoria() {
         return categoria;
     }

@@ -19,6 +19,7 @@ public class CategoriaController {
     @Autowired
     private CategoriaService categoriaService;
 
+
     @GetMapping("/listar")
     public ModelAndView listar(ModelMap model) {
         model.addAttribute("categorias", categoriaService.recuperar());
@@ -37,7 +38,7 @@ public class CategoriaController {
         }
 
         categoriaService.salvar(categoria);
-        attr.addFlashAttribute("mensagem", "Playlist criada com sucesso.");
+        attr.addFlashAttribute("mensagem", "Categoria criada com sucesso.");
         return "redirect:/categorias/listar";
     }
 
