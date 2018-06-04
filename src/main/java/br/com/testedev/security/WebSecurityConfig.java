@@ -42,7 +42,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
                     .inMemoryAuthentication()
                     .withUser("Luiz").password("$2a$10$CrR7.WAMlNCh7PQxFVSx9.RwakInCVAjqvm3CsipKc/n7XCL7DYKK").roles("MASTER")
                     .and()
-                    .withUser("Ana Paula").password("$2a$10$CrR7.WAMlNCh7PQxFVSx9.RwakInCVAjqvm3CsipKc/n7XCL7DYKK").roles("FUNCIONARIO");
+                    .withUser("Ana").password("$2a$10$CrR7.WAMlNCh7PQxFVSx9.RwakInCVAjqvm3CsipKc/n7XCL7DYKK").roles("FUNCIONARIO");
         }
 
     @Bean
